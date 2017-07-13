@@ -11,14 +11,8 @@ This project offers a sample Dockerfile and scripts to build a Oracle Fusion Mid
 The `buildDockerImage.sh` script is just a utility shell script that takes the version of the image that needs to be built. Expert users are welcome to directly call `docker build` with their prefered set of parameters.
 
 
-### Building the Oracle WebLogic Infrastructure 12.2.1.2 base image
-**IMPORTANT:**If you are building the Oracle WebLogic Infrastructure image you must first download the Oracle WebLogic Infrastructure 12.2.1.2 binary and drop in folder `../OracleWebLogic/dockerfiles/12.2.1.2` and build that image. For more information, visit the [OracleWeblogic](../OracleWebLogic) folder's [README](../OracleWebLogic/README.md) file.
-
-        $ cd ../OracleWebLogic/dockerfiles
-        $ ./buildDockerImage.sh -v 12.2.1.2 -i
-
-### Building Oracle FMW Infrastructure Docker  Image
-**IMPORTANT:**The Oracle FMW Infrastructure image extends the Oracle WebLogic 12.2.1.2 Infrastructure install image. You must build the Oracle WebLogic Infrastructure image. See "Building the Oracle WebLogic Infrastructure 12.2.1.2 base image".
+### Building the Oracle FMW Infrastructure 12.2.1.2 base image
+**IMPORTANT:**If you are building the Oracle FMW Infrastructure image you must first download the Oracle WebLogic FMW Infrastructure 12.2.1.2 binary and drop in folder `../OracleFMWInfrastructure/dockerfiles/12.2.1.2` and build the image. For more information, read the [README](README.md) file.
 
 Choose which version of the image you want to build, go into the **dockerfiles** folder and run the **buildDockerImage.sh** script as root.
 
@@ -109,7 +103,7 @@ Follow the steps below:
   
   5. Start a container to launch the Admin Server from the image created in step 3. The environment variables used to configure the InfraDomain are defined in infraDomain.env.list file. Call docker run from the **dockerfiles/12.2.1.2** directory where the infraDomain.env.list file is and pass the file name at runtime. To run a Admin Server container call: 
 
-        $ docker run --detach=true -i -t -p 9001:7001 --network=InfraNET -v <Host Volume>:/u01/oracle/user_projects --name InfraAdminContainer --env-file ./infraDomain.env.list oracle/fmw-infrastructure:12.2.1.2
+        $ docker run --detach=true -i -t -p 9001:7001 --network=InfraNET -v "host volume directory":/u01/oracle/user_projects --name InfraAdminContainer --env-file ./infraDomain.env.list oracle/fmw-infrastructure:12.2.1.2
 
   6. Access the administration console
 
